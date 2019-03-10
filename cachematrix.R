@@ -1,14 +1,24 @@
-## Put comments here that give an overall description of what your
-## functions do
+## ESTA FUNCION CREA UNA UNA MATRIZ Y CAPTURA SU INVERSA.
+## SI LA LA MATRIZ YA SE CALCULO, ENTONCES PARA.
+## PERO SI NO LO HIZO, ENTONCES CAPTURA SU MATRIZ
 
-## Write a short comment describing this function
+## ESTA FUNCION CREA UNA MATRIZ QUE CAPTURA SU INVERSA
+## (SIEMPRE Y CUANDO NO LA HALLA CAPTURADO PREVIAMENTE)
+## SI LA LA MATRIZ YA SE CALCULO,
+## ENTONCES DEVUELVE LA INVERSA
 makeCacheMatrix <- function(x = matrix()) {
+        
+        # SON LOS INSUMOS DE LA LATRIZ
         inv <- NULL
         set <- function(y) {
                 x <<- y
                 inv <<- NULL
         }
+        
+        # SE OBTIENE LOS INSUMOS
         get <- function() x
+        
+        # SE PREPARA LA INVERSA
         setInverse <- function(inverse) inv <<- inverse
         getInverse <- function() inv
         list(set = set,
@@ -18,15 +28,19 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## ESTA FUNCION CREA UNA UNA MATRIZ Y CAPTURA SU INVERSA.
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        
+        ## VERIFICACMOS QUE NO SE HAYA CAPTURADO
+        ## LA INVERSA PREVIAMENTE
         inv <- x$getInverse()
         if (!is.null(inv)) {
                 message("getting cached data")
                 return(inv)
         }
+        
+        # SI NO SE HA CALCULALO LA INVERSA PREVIAMENTE
+        # ENTONCES SE CALCULA SU INVERSA
         data <- x$get()
         inv <- solve(data, ...)
         x$setInverse(inv)
